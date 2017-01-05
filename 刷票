@@ -1,4 +1,74 @@
- //无座的
+
+
+
+
+
+  //无座的
+        $().ready(function myfunction() {
+            var ii = 0;
+            var b = 0;
+            timers = setTimeout(function () {
+                console.log(ii++);
+                $("#queryLeftTable tr td:nth-child(11)").each(function myfunction() {
+                    var ss = $(this).html();
+                    if (ss != "无" && ss != "*" && ss != "--") {
+                        $(this).next().next().find('a').each(function myfunction() {
+                            b = 1;
+                            var x = document.createElement("EMBED");
+        x.setAttribute("id", "sound")
+        x.setAttribute("src", "https://kyfw.12306.cn/otn/resources/js/framework/audio/message.wav");
+        document.body.appendChild(x);
+        document.getElementById("sound").autostart = true;
+                            $(this).click();
+                        });
+                    }
+                });
+                if (b == 1) {
+
+                    timers = setTimeout(arguments.callee, 15000000);
+                }
+                else {
+                    $("#query_ticket").click();
+                    timers = setTimeout(arguments.callee, 1000);
+                }
+            }, 1000);
+        });
+        //有座的
+        $().ready(function myfunction() {
+            var ii = 0;
+            var b = 0;
+            timers = setTimeout(function () {
+                console.log(ii++);
+                $("#queryLeftTable tr td:nth-child(10)").each(function myfunction() {
+                    var ss = $(this).html();
+                    if (ss != "无" && ss != "*" && ss != "--") {
+                        $(this).next().next().next().find('a').each(function myfunction() {
+                            b = 1;
+ 			$(this).click();
+                           var x = document.createElement("EMBED");
+        x.setAttribute("id", "sound")
+        x.setAttribute("src", "https://kyfw.12306.cn/otn/resources/js/framework/audio/message.wav");
+        document.body.appendChild(x);
+        document.getElementById("sound").autostart = true;
+                           
+                        });
+                    }
+                });
+                if (b == 1) {
+                    console.log(56);
+                    timers = setTimeout(arguments.callee, 15000000);
+                }
+                else {
+                    $("#query_ticket").click();
+                    timers = setTimeout(arguments.callee, 1500);
+                }
+            }, 1500);
+        });
+        //车次筛选
+
+
+
+//无座的
         $().ready(function myfunction() {
             var ii = 0;
             var b = 0;
