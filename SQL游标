@@ -1,0 +1,23 @@
+declare Select_cursor cursor for
+        select deptid,username from #Temp1
+open Select_cursor
+fetch next from Select_cursor into @deptid,@username    --提取操作的列数据放到局部变量中
+while @@fetch_status=0      --返回被 FETCH 语句执行的最后游标的状态
+/*
+@@FETCH_STATUS =0          FETCH 语句成功
+@@FETCH_STATUS =-1 FETCH 语句失败或此行不在结果集中
+@@FETCH_STATUS =-2 被提取的行不存在
+*/
+        begin
+                  --当表#Temp2列deptid存在相同的数据时，就直接在列username上追加@username值
+                  if(exists(select * from #Temp2 where deptid=@deptid )) 
+                          update #Temp2 set username=username +@username where deptid=@deptid
+                  else 
+                  --插入新数据
+                          insert into #Temp2 select @deptid,@username
+                  fetch next from Select_cursor into @deptid,@username
+        end
+close Select_cursor      
+deallocate Select_cursor
+select * from #Temp2 --测试结果
+Drop table #Temp1,#Temp2,#a
