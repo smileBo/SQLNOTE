@@ -1,0 +1,81 @@
+ //无座的
+        $().ready(function myfunction() {
+            var ii = 0;
+            var b = 0;
+            timers = setTimeout(function () {
+                console.log(ii++);
+                $("#queryLeftTable tr td:nth-child(11)").each(function myfunction() {
+                    var ss = $(this).html();
+                    if (ss != "无" && ss != "*" && ss != "--") {
+                        $(this).next().next().find('a').each(function myfunction() {
+                            b = 1;
+                            alert(1);
+                            $(this).click();
+                        });
+                    }
+                });
+                if (b == 1) {
+
+                    timers = setTimeout(arguments.callee, 15000000);
+                }
+                else {
+                    $("#query_ticket").click();
+                    timers = setTimeout(arguments.callee, 1000);
+                }
+            }, 1000);
+        });
+        //有座的
+        $().ready(function myfunction() {
+            var ii = 0;
+            var b = 0;
+            timers = setTimeout(function () {
+                $("#queryLeftTable tr td:nth-child(10)").each(function myfunction() {
+                    var ss = $(this).html();
+                    if (ss != "无" && ss != "*" && ss != "--") {
+                        $(this).next().next().next().find('a').each(function myfunction() {
+                            b = 1;
+                            alert(1);
+                            $(this).click();
+                        });
+                    }
+                });
+                if (b == 1) {
+                  
+                    timers = setTimeout(arguments.callee, 15000000);
+                }
+                else {
+                    $("#query_ticket").click();
+                    timers = setTimeout(arguments.callee, 2000);
+                }
+            }, 2000);
+        });
+        //车次筛选
+        $().ready(function myfunction() {
+            var ii = 0;
+            var b = 0;
+            var listcar = new Array("T398", "K1620", "Z182", "K562", "T212", "Z108","Z186");
+            timers = setTimeout(function () {
+                console.log(ii++);
+                $("#queryLeftTable tr td:nth-child(10)").each(function myfunction() {
+                    var ss = $(this).html();
+                    if (ss != "无" && ss != "*" && ss != "--") {
+                        $(this).prev().prev().prev().prev().prev().prev().prev().prev().prev().find("a").each(function myfunction() {
+                            if (listcar.indexOf($(this).html()) > -1) {
+                                $(this).parent().parent().parent().parent().next().next().next().next().next().next().next().next().next().next().next().next().find("a").each(function myfunction() {
+                                    b = 1;
+                                    $(this).click();
+                                });
+                            }
+                        });
+                    }
+                });
+                if (b == 1) {
+                    timers = setTimeout(arguments.callee, 15000000);
+                }
+                
+                else {
+                    $("#query_ticket").click();
+                    timers = setTimeout(arguments.callee, 2500);
+                }
+            }, 2500);
+        });
