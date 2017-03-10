@@ -1,0 +1,4 @@
+declare @id int 
+set @id=null
+select distinct(ProductNO) from LinePlan where ProductDate between '2017-03-01' and '2017-03-20' and
+ OrganizeCode like '01050102%' and  LineId=ISNULL(@id,LineId)-- 如果为null 就 等于字段本身
