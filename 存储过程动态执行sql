@@ -22,11 +22,9 @@ as
 		print @sql
 		EXEC sp_executesql  @sql,N'@stateid int', @stateid
 				select 'NormalTime操作成功' states
+				//多个参数
+				//EXEC sp_executesql  @sql,N'@stateid int,@id int' , @stateid,@id
+				//select 'NormalTime操作成功' states
 		end
-	if(@type='ErrorTime')
-		begin
-				update Product set ErrorTime=ISNULL(ErrorTime,0)+@times,StateCode=@stateid  where ID=@id
-				select '操作成功' states
-		end
-		
+	
 	
