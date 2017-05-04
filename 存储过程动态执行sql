@@ -18,7 +18,7 @@ as
 		begin
 		
 		declare @sql nvarchar(max)
-		set @sql='update Product set '+@zdtype+'=GETDATE(),StateCode=@stateid where Id=16'
+			set @sql='update Product set '+@zdtype+'=GETDATE(),StateCode=@stateid where Id=@id'
 		print @sql
 		EXEC sp_executesql  @sql,N'@stateid int', @stateid
 				select 'NormalTime操作成功' states
