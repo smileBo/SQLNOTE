@@ -1,0 +1,32 @@
+-- =============================================  
+-- Author:郭建波  
+-- Create date: 2017-05-03  
+-- Description:   
+--exec g_UpdateActTime 'NormalTime','ActStart',16,0,10
+-- =============================================  
+alter proc g_UpdateActTime
+(
+	@type nvarchar(100),
+	@zdtype nvarchar(120),
+	@id int,
+	@times int,
+	@stateid int
+)
+
+as
+	if(@type='NormalTime')
+		begin
+		
+		declare @sql nvarchar(max)
+		set @sql='update Product set '+@zdtype+'=GETDATE(),StateCode=@stateid where Id=16'
+		print @sql
+		EXEC sp_executesql  @sql,N'@stateid int', @stateid
+				select 'NormalTime操作成功' states
+		end
+	if(@type='ErrorTime')
+		begin
+				update Product set ErrorTime=ISNULL(ErrorTime,0)+@times,StateCode=@stateid  where ID=@id
+				select '操作成功' states
+		end
+		
+	
